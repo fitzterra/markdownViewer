@@ -11,7 +11,7 @@
 REALDIR=$(readlink -m "$0")
 MYDIR=$(dirname "$REALDIR")
 
-cd "$MYDIR" || exit 1
+[ ! -d "$MYDIR" ] && echo "Something weird: [$MYDIR] not found..." && exit 1
 
 # We expect the virtual environment to be in `venv` - run grip from there
-venv/bin/grip $*
+${MYDIR}/venv/bin/grip $*
